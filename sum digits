@@ -1,0 +1,36 @@
+question==>https://atcoder.jp/contests/dp/tasks/dp_s
+
+
+https://atcoder.jp/contests/dp/submissions/25983741
+
+ #include<bits/stdc++.h>
+ #define int long long 
+ using namespace std;
+ int mod = 1e9+7;
+ int solve(int ind,bool flag,string k,int d,int sum,vector<vector<vector<int>>>&dp,int n){
+     //cout<<sum<<endl;
+     //cout<<"hello\n";
+     if(ind==n){
+         return sum==0;
+     }
+     if(dp[ind][flag][sum]!=-1)return dp[ind][flag][sum];
+     int ways = 0;
+     int limit = flag==true?k[ind]-'0':9;
+         
+     for(int digit = 0;digit<=limit;digit++){
+         //cout<<digit<<endl;
+         bool islimit=digit<k[ind]-'0'?false:flag;
+         ways += solve(ind+1,islimit,k,d,(sum+digit)%d,dp,n);
+     }
+     return dp[ind][flag][sum]=ways%mod;
+ }
+ signed main(){
+     string k;
+     int d;
+     cin>>k;
+     cin>>d;
+     int n = k.length();
+     vector<vector<vector<int>>>dp(n,vector<vector<int>>(2,vector<int>(d,-1)));
+     cout<<((solve(0,true,k,d,0,dp,n)-1+mod)%mod)<<endl;
+     return 0;
+ }
