@@ -1,3 +1,4 @@
+//this will count how many ways digit(d) appears k times in range l to r
 #include<bits/stdc++.h>
 #define int long long 
 using namespace std;
