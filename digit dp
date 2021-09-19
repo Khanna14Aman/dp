@@ -26,7 +26,7 @@ int fun(int ind,int flag,int cnt,int d,vector<int>num,int k){
                 ways += fun(ind+1,1,cnt,d,num,k);
             }
             else{
-                ways += fun(ind+1,0,cnt,d,num,k);
+                ways += fun(ind+1,flag,cnt,d,num,k);
             }
         }
     }
