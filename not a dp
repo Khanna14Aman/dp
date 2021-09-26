@@ -1,5 +1,7 @@
 question==>https://leetcode.com/contest/weekly-contest-260/problems/grid-game/
 
+discuss=>https://leetcode.com/problems/grid-game/discuss/1486288/PrefixSuffix-Sum
+
 class Solution {
 public:
        
