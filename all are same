@@ -1,0 +1,60 @@
+question==>https://codeforces.com/contest/1593/problem/D2
+
+discuss==>https://youtu.be/TvqhDJLzRVg
+
+
+#include<bits/stdc++.h>
+using namespace std;
+#define sz 2e6+7
+
+void solve(){
+    int n;
+    cin>>n;
+    map<int,int>mpp;
+    vector<int>v(n);
+    for(int i=0;i<n;i++){
+        cin>>v[i];
+        mpp[v[i]]++;
+        v[i]+=sz;
+    }
+    
+    for(auto it:mpp){
+        if(2*(it.second)>=n){
+            cout<<"-1\n";
+            return;
+        }
+    }
+    int ans=0;
+    sort(v.begin(),v.end());
+    map<int,int>g;
+    vector<int>str(n);
+    for(int i=sz;i>0;i--){
+        for(int j=0;j<n;j++){
+            str[j] = v[j]%i;
+            g[str[j]]++;
+        }
+        int mx=0;
+        for(int j=0;j<n;j++){
+            mx = max(mx,g[str[j]]);
+            g[str[j]]--;
+        }
+        
+        if(mx>=(n/2)){
+            ans=i;
+            break;
+        }
+        
+    }
+    
+    cout<<ans<<"\n";
+}
+
+
+signed main(){
+    int t;
+    cin>>t;
+    while(t--){
+        solve();
+    }
+    return 0;
+}
