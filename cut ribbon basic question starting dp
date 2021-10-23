@@ -1,0 +1,42 @@
+question==>https://codeforces.com/problemset/problem/189/A
+
+
+#include<bits/stdc++.h>
+#define int long long
+using namespace std;
+
+int dp[5000];
+
+int solve(int dp[],int n,int a,int b,int c){
+    if(n==0){
+        return 0;
+    }
+    if(dp[n]!=-1){
+        return dp[n];
+    }
+    int cnt = INT_MIN;
+    
+    if(n>=a){
+        cnt = max(cnt,1+solve(dp,n-a,a,b,c));
+    }
+    if(n>=b){
+        cnt = max(cnt,1+solve(dp,n-b,a,b,c));
+    }
+    if(n>=c){
+        cnt = max(cnt,1+solve(dp,n-c,a,b,c));
+    }
+    
+    return dp[n] = cnt;
+}
+
+signed main(){
+    int n,a,b,c;
+    cin>>n>>a>>b>>c;
+    if(n<a && n<b && n<c){
+        cout<<"1\n";
+        return 0;
+    }
+    memset(dp,-1,sizeof(dp));
+    cout<<solve(dp,n,a,b,c)<<endl;
+    return 0;
+}
